@@ -57,7 +57,7 @@ export default function Cards(props) {
 
   return (
     <div>
-      <div className="card" style={{ width: "18rem" }}>
+      <div className="card ">
         <img
           src={props.foodItem.img}
           className="card-img-top cardImg"

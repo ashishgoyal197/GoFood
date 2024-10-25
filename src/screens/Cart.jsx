@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useCart, useDispatchCart } from "../components/ContextReducer";
+import Navbar from "../components/Navbar";
 
 export default function Cart() {
   let data = useCart();
@@ -9,6 +10,9 @@ export default function Cart() {
   if (data.length === 0) {
     return (
       <div>
+        <div className="mb-4">
+          <Navbar />
+        </div>
         <div className="m-5 w-100 text-center fs-3">The Cart is Empty!</div>
       </div>
     );
@@ -39,6 +43,9 @@ export default function Cart() {
 
   return (
     <div>
+      <div className="mb-4">
+        <Navbar />
+      </div>
       <div className="container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md">
         <table className="table table-hover ">
           <thead className=" text-success fs-4">

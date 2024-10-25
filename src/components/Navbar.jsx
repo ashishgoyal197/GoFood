@@ -1,17 +1,23 @@
 import { Link, useNavigate } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
 import { useCart } from "./ContextReducer";
+import { useState } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Navbar() {
   const data = useCart();
   const navigate = useNavigate();
+
   // my order button
   let myOrder = "";
   if (localStorage.getItem("authToken")) {
     myOrder = (
       <li className="nav-item">
-        <Link className="nav-link active fs-5" aria-current="page" to="/">
+        <Link
+          className="nav-link active fs-5"
+          aria-current="page"
+          to="/myorder"
+        >
           My Orders
         </Link>
       </li>
@@ -61,13 +67,117 @@ export default function Navbar() {
     );
   }
 
+  const [toggle, setToggle] = useState(false);
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  let temp = toggle ? (
+    <div
+      className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+      style="width: 280px;"
+    >
+      <a
+        href="/"
+        className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+      >
+        <svg className="bi me-2" width="40" height="32"></svg>
+        <span className="fs-4">Sidebar</span>
+      </a>
+      <hr />
+      <ul className="nav nav-pills flex-column mb-auto">
+        <li className="nav-item">
+          <a href="#" className="nav-link active" aria-current="page">
+            <svg className="bi me-2" width="16" height="16"></svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#" className="nav-link text-white">
+            <svg className="bi me-2" width="16" height="16"></svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#" className="nav-link text-white">
+            <svg className="bi me-2" width="16" height="16"></svg>
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="#" className="nav-link text-white">
+            <svg className="bi me-2" width="16" height="16"></svg>
+            Products
+          </a>
+        </li>
+        <li>
+          <a href="#" className="nav-link text-white">
+            <svg className="bi me-2" width="16" height="16"></svg>
+            Customers
+          </a>
+        </li>
+      </ul>
+      <hr />
+      <div className="dropdown">
+        <a
+          href="#"
+          className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+          id="dropdownUser1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://github.com/mdo.png"
+            alt=""
+            width="32"
+            height="32"
+            className="rounded-circle me-2"
+          />
+          <strong>mdo</strong>
+        </a>
+        <ul
+          className="dropdown-menu dropdown-menu-dark text-small shadow"
+          aria-labelledby="dropdownUser1"
+        >
+          <li>
+            <a className="dropdown-item" href="#">
+              New project...
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Settings
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Profile
+            </a>
+          </li>
+          <li>
+            <hr className="dropdown-divider" />
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  ) : (
+    ""
+  );
+
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+      <div>{temp}</div>
+      <nav className="navbar navbar-expand-md navbar-dark bg-success">
         <div className="container-fluid">
           <Link className="navbar-brand fs-1 fst-italic" to="/">
             GoFood
           </Link>
+          {/* side button for menu bar */}
           <button
             className="navbar-toggler"
             type="button"
@@ -77,8 +187,9 @@ export default function Navbar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" onClick={handleClick}></span>
           </button>
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto mb-2">
               <li className="nav-item">

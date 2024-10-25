@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export default function Signup() {
+  let navigate = useNavigate();
   const [credentials, setCredentials] = React.useState({
     name: "",
     password: "",
@@ -28,6 +30,8 @@ export default function Signup() {
 
     if (!json.success) {
       alert("Enter valid credentials");
+    } else {
+      navigate("/login");
     }
   };
 
@@ -37,6 +41,9 @@ export default function Signup() {
 
   return (
     <>
+      <div className="mb-4">
+        <Navbar />
+      </div>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

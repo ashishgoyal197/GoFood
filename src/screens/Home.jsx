@@ -2,8 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import Cards from "../components/Cards.jsx";
-// import { search } from "../../backend/Routes/CreateUser.js";
-// import Carousal from "../components/Carousal.jsx";
+
 
 export default function Home() {
   const [search, setSearch] = React.useState("");
@@ -36,7 +35,10 @@ export default function Home() {
       )
       .map((filItem) => {
         return (
-          <div key={filItem._id} className="mb-3 col-12 col-md-6 col-lg-3">
+          <div
+            key={filItem._id}
+            className="mb-3 col-12 col-md-6 col-lg-4 col-xxl-3 "
+          >
             <Cards foodItem={filItem} options={filItem.options[0]} />
           </div>
         );
@@ -81,7 +83,7 @@ export default function Home() {
                 <input
                   className="form-control me-2 w-75"
                   type="search"
-                  placeholder="Type in..."
+                  placeholder="Search..."
                   aria-label="Search"
                   value={search}
                   onChange={handleSearch}
@@ -145,7 +147,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container ">{AllCards}</div>
+      <div className="container d-flex align-items-center flex-column">
+        {AllCards}
+      </div>
       <div>
         <Footer />
       </div>
