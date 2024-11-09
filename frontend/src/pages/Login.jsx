@@ -1,9 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useAuthContext } from "../context/ContextReducer";
 
 export default function Login() {
-  let navigate = useNavigate();
+  const { setAuthUser } = useAuthContext();
+
   const [credentials, setCredentials] = React.useState({
     password: "",
     email: "",
@@ -29,12 +31,13 @@ export default function Login() {
     } else {
       localStorage.setItem("userEmail", credentials.email);
       localStorage.setItem("authToken", json.authToken);
-      console.log(localStorage.getItem("authToken"));
-      navigate("/");
+      // console.log(localStorage.getItem("authToken"));
+      // navigate("/");
+      setAuthUser(json);
     }
   };
 
-  const onChange = (event) => {
+  const handleChange = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
 
@@ -56,11 +59,8 @@ export default function Login() {
               aria-describedby="emailHelp"
               name="email"
               value={credentials.email}
-              onChange={onChange}
+              onChange={handleChange}
             />
-            <div id="emailHelp" className="form-text">
-              We will never share your email with anyone else.
-            </div>
           </div>
 
           <div className="mb-3">
@@ -73,7 +73,7 @@ export default function Login() {
               id="exampleInputPassword1"
               name="password"
               value={credentials.password}
-              onChange={onChange}
+              onChange={handleChange}
             />
           </div>
 

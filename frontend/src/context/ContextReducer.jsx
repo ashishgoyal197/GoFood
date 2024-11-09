@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 const cartStateContext = createContext();
 const cartDisPatchContext = createContext();
+export const AuthContext = createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -47,6 +48,24 @@ const reducer = (state, action) => {
     default:
       console.log("Error in Reducer");
   }
+};
+
+// Auth context
+
+export const useAuthContext = () => {
+  return useContext(AuthContext);
+};
+
+export const AuthContextProvider = ({ children }) => {
+  const [authUser, setAuthUser] = useState(
+    localStorage.getItem("authToken") || null
+  );
+
+  return (
+    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const CartProvider = ({ children }) => {

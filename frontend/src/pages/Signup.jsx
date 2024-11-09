@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useAuthContext } from "../context/ContextReducer";
 
 export default function Signup() {
-  let navigate = useNavigate();
+  const { setAuthUser } = useAuthContext();
   const [credentials, setCredentials] = React.useState({
     name: "",
     password: "",
@@ -31,7 +32,9 @@ export default function Signup() {
     if (!json.success) {
       alert("Enter valid credentials");
     } else {
-      navigate("/login");
+      // navigate("/login");
+      localStorage.setItem("authToken", json.authToken);
+      setAuthUser(json);
     }
   };
 
@@ -73,9 +76,6 @@ export default function Signup() {
               value={credentials.email}
               onChange={onChange}
             />
-            <div id="emailHelp" className="form-text">
-              We will never share your email with anyone else.
-            </div>
           </div>
 
           <div className="mb-3">

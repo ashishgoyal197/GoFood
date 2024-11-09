@@ -1,6 +1,6 @@
 // import React from 'react'
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function MyOrder() {
   return (

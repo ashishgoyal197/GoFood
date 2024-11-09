@@ -1,6 +1,6 @@
 // import React, { useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useCart, useDispatchCart } from "../components/ContextReducer";
+import { useCart, useDispatchCart } from "../context/ContextReducer";
 import Navbar from "../components/Navbar";
 
 export default function Cart() {
@@ -48,7 +48,7 @@ export default function Cart() {
       </div>
       <div className="container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md">
         <table className="table table-hover ">
-          <thead className=" text-success fs-4">
+          <thead className=" text-primary fs-4">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
@@ -61,7 +61,9 @@ export default function Cart() {
           <tbody>
             {data.map((food, index) => (
               <tr key={food.id}>
-                <th scope="row">{index + 1}</th>
+                <th scope="row ">
+                  <span className="text-primary">{index + 1}.</span>
+                </th>
                 <td>{food.name}</td>
                 <td>{food.qty}</td>
                 <td>{food.size}</td>
@@ -80,10 +82,12 @@ export default function Cart() {
           </tbody>
         </table>
         <div>
-          <h1 className="fs-2">Total Price: {totalPrice}/-</h1>
+          <h1 className="fs-2">
+            <span className="text-primary">Total-Price:</span> {totalPrice}/-
+          </h1>
         </div>
         <div>
-          <button className="btn bg-success mt-5 " onClick={handleCheckOut}>
+          <button className="btn bg-primary mt-5 " onClick={handleCheckOut}>
             {" "}
             Check Out{" "}
           </button>

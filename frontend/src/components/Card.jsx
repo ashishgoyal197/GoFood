@@ -1,9 +1,9 @@
 import React from "react";
-import { useDispatchCart, useCart } from "./ContextReducer";
+import { useDispatchCart, useCart } from "../context/ContextReducer";
 import "../index.css";
 // import {} from "../../backend/Routes/CreateUser";
 
-export default function Cards(props) {
+export default function Card(props) {
   let dispatch = useDispatchCart();
   let data = useCart();
   let options = props.options;
@@ -64,12 +64,12 @@ export default function Cards(props) {
           alt="..."
         />
         <div className="card-body">
-          <h5 className="card-title">{props.foodItem.name}</h5>
-          <p className="card-text">{props.foodItem.description}</p>
+          <h5 className="card-title text-warning">{props.foodItem.name}</h5>
+          {/* <p className="card-text">{props.foodItem.description}</p> */}
           <select
             name=""
             id=""
-            className="m-2 h-100 w-20 bg-success text-black rounded"
+            className="m-2 h-100 w-20 bg-primary text-white rounded"
             onChange={(e) => setQty(e.target.value)}
           >
             {Array.from(Array(6), (e, i) => {
@@ -83,7 +83,7 @@ export default function Cards(props) {
           <select
             name=""
             id=""
-            className="m-2 h-100 w-20 bg-success text-black rounded"
+            className="m-2 h-100 w-20 bg-primary text-white rounded"
             onChange={(e) => setSize(e.target.value)}
           >
             {allOptions}
@@ -91,7 +91,7 @@ export default function Cards(props) {
           <div className="d-inline">₹{finalPrice}/-</div>
           <hr />
           <button
-            className="btn btn-success justify-center ms-2"
+            className="btn btn-primary justify-center ms-2"
             onClick={handleClick}
           >
             Add to Cart

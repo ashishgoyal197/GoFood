@@ -1,16 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
-import { useCart } from "./ContextReducer";
+import { useAuthContext, useCart } from "../context/ContextReducer";
 import { useState } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Navbar() {
   const data = useCart();
-  const navigate = useNavigate();
+  const { authUser, setAuthUser } = useAuthContext();
 
   // my order button
   let myOrder = "";
-  if (localStorage.getItem("authToken")) {
+  if (authUser) {
     myOrder = (
       <li className="nav-item">
         <Link
@@ -27,8 +27,9 @@ export default function Navbar() {
   // login and logout
 
   const handleLogOut = () => {
-    navigate("/login");
+    // navigate("/login");
     localStorage.removeItem("authToken");
+    setAuthUser(null);
   };
 
   let badge = " ";
@@ -40,10 +41,10 @@ export default function Navbar() {
     );
   }
   let rightNav = "";
-  if (localStorage.getItem("authToken")) {
+  if (authUser) {
     rightNav = (
       <div className="d-flex">
-        <Link className=" btn bg-white text-success mx-1" to={"/cart"}>
+        <Link className=" btn bg-white text-primary mx-1" to={"/cart"}>
           My Cart{"  "}
           {badge}
         </Link>
@@ -56,18 +57,18 @@ export default function Navbar() {
   } else {
     rightNav = (
       <div className="d-flex">
-        <Link className=" btn bg-white text-success mx-1" to="/login">
+        <Link className=" btn bg-white text-primary mx-1" to="/login">
           Log in
         </Link>
 
-        <Link className="btn bg-white text-success mx-1" to="/createuser">
+        <Link className="btn bg-white text-primary mx-1" to="/createuser">
           Sign Up
         </Link>
       </div>
     );
   }
 
-  const [toggle, setToggle] = useState(false);
+  const [toggle] = useState(false);
   const handleClick = () => {
     console.log("clicked");
   };
@@ -172,7 +173,7 @@ export default function Navbar() {
   return (
     <div>
       <div>{temp}</div>
-      <nav className="navbar navbar-expand-md navbar-dark bg-success">
+      <nav className="navbar navbar-expand-md navbar-dark bg-primary">
         <div className="container-fluid">
           <Link className="navbar-brand fs-1 fst-italic" to="/">
             GoFood
