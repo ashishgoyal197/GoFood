@@ -22,33 +22,45 @@ export default function Cards(props) {
     loadData();
   }, []);
 
+  const [flag, setFlag] = React.useState(true);
+
   function f(name) {
-    const foodItems = foodItem
-      .filter(
-        (item) =>
-          item.CategoryName === name &&
-          item.name.toLowerCase().includes(props.search.toLowerCase())
-      )
-      .map((filItem) => {
-        return (
-          <div
-            key={filItem._id}
-            className="mb-3 col-12 col-md-6 col-lg-4 col-xxl-3 "
-          >
-            <Card foodItem={filItem} options={filItem.options[0]} />
-          </div>
-        );
-      });
-    return foodItems;
+    const foodItems = foodItem.filter(
+      (item) =>
+        item.CategoryName === name &&
+        item.name.toLowerCase().includes(props.search.toLowerCase())
+    );
+
+    if (!foodItems) {
+      setFlag(false);
+    }
+
+    const foods = foodItems.map((filItem) => {
+      return (
+        <div
+          key={filItem._id}
+          className="mb-3 col-12 col-md-6 col-lg-4 col-xxl-3 "
+        >
+          <Card foodItem={filItem} options={filItem.options[0]} />
+        </div>
+      );
+    });
+    return foods;
   }
 
   const AllCard = foodCat.map((data) => {
     return (
       <div key={"Card"} className="row mb-3">
-        <div key={data._id} className="fs-3 m-3">
-          {data.CategoryName}
-        </div>
-        <hr />
+        {flag ? (
+          <>
+            <div key={data._id} className="fs-3 m-3 text-warning">
+              {data.CategoryName}
+            </div>
+            <hr />
+          </>
+        ) : (
+          ""
+        )}
 
         <div className="row">{f(data.CategoryName)}</div>
       </div>

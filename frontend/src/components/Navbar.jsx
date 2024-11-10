@@ -175,7 +175,7 @@ export default function Navbar() {
       <div>{temp}</div>
       <nav className="navbar navbar-expand-md navbar-dark bg-primary">
         <div className="container-fluid">
-          <Link className="navbar-brand fs-1 fst-italic" to="/">
+          <Link className="navbar-brand text-warning fs-1 fst-italic" to="/">
             GoFood
           </Link>
           {/* side button for menu bar */}
@@ -193,15 +193,19 @@ export default function Navbar() {
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto mb-2">
-              <li className="nav-item">
-                <Link
-                  className="nav-link active fs-5"
-                  aria-current="page"
-                  to="/"
-                >
-                  Home
-                </Link>
-              </li>
+              {authUser ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active fs-5"
+                    aria-current="page"
+                    to="/"
+                  >
+                    Home
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
               {myOrder}
             </ul>
 

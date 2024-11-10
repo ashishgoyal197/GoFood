@@ -1,15 +1,22 @@
 import React from "react";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-// import Card from "../components/Card.jsx";
 import Carousal from "../components/Carousal.jsx";
 import Cards from "../components/Cards.jsx";
 
 export default function Home() {
   const [search, setSearch] = React.useState("");
-  // for carousal
+  const [item, setItem] = React.useState("");
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
 
-  const handleSearch = (e) => setSearch(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setItem(search);
+    setSearch("");
+  };
 
   return (
     <div>
@@ -17,13 +24,15 @@ export default function Home() {
         <Navbar />
       </div>
       <div>
-        <Carousal search={search} onSearch={handleSearch} />
+        <Carousal
+          search={search}
+          onSearch={handleSearch}
+          onSubmit={handleSubmit}
+        />
       </div>
-
       <div>
-        <Cards search={search} />
+        <Cards search={item} />
       </div>
-
       <div>
         <Footer />
       </div>

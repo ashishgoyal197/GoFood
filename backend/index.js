@@ -10,7 +10,6 @@ const OrderData = require("./Routes/OrderData");
 mongoDB();
 dotenv.config();
 
-// console.log(process.env.mongodb_uri);
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");

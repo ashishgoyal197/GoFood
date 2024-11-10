@@ -11,18 +11,21 @@ export default function Carousal(props) {
       >
         <div className="carousel-inner " id="carousel">
           <div className=" carousel-caption  " style={{ zIndex: "9" }}>
-            <form className=" d-flex justify-content-center">
+            <form
+              className=" d-flex justify-content-center"
+              onSubmit={props.onSubmit}
+            >
               <input
-                className="form-control me-2 w-75 "
+                className="form-control me-2 w-75 text-primary bg-warning"
                 type="search"
                 placeholder="Search..."
                 aria-label="Search"
                 value={props.search}
                 onChange={props.onSearch}
               />
-              {/* <button className="btn text-white bg-success" type="submit">
+              <button className="btn text-white bg-primary" type="submit">
                 Search
-              </button> */}
+              </button>
             </form>
           </div>
           <div className="carousel-item active">

@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatchCart, useCart } from "../context/ContextReducer";
 import "../index.css";
-// import {} from "../../backend/Routes/CreateUser";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
@@ -31,7 +30,7 @@ export default function Card(props) {
         break;
       }
     }
-    console.log(food);
+
     if (Object.keys(food).length) {
       await dispatch({
         type: "UPDATE",
@@ -57,7 +56,7 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card ">
+      <div className="card" style={{ minWidth: "250px" }}>
         <img
           src={props.foodItem.img}
           className="card-img-top cardImg"
