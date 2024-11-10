@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
+    "backend": "file:..",
     "bootstrap": "^5.3.3",
     "bootstrap-dark-5": "^1.1.3",
     "cookieparser": "^0.1.0",
