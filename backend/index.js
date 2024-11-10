@@ -12,12 +12,15 @@ mongoDB();
 dotenv.config();
 
 // deployement
-const ___dirname = path.resolve();
+// const ___dirname = path.resolve();
 
 //
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", [
+    "http://localhost:3000",
+    "https://gofood-brzj.onrender.com",
+  ]);
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -36,10 +39,10 @@ app.use("/api", DisplayData);
 app.use("/api", OrderData);
 
 // deployment
-app.use(express.static(path.join(___dirname, "/frontend/dist")));
+app.use(express.static(path.join(path.resolve(), "/frontend/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(___dirname, "frontend", "dist", "index.html"));
+  res.sendFile(path.join(path.resolve(), "frontend", "dist", "index.html"));
 });
 
 //
