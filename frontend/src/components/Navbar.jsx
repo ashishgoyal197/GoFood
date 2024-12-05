@@ -8,7 +8,6 @@ export default function Navbar() {
   const data = useCart();
   const { authUser, setAuthUser } = useAuthContext();
 
-  // my order button
   let myOrder = "";
   if (authUser) {
     myOrder = (
@@ -27,7 +26,6 @@ export default function Navbar() {
   // login and logout
 
   const handleLogOut = () => {
-    // navigate("/login");
     localStorage.removeItem("authToken");
     setAuthUser(null);
   };

@@ -7,6 +7,7 @@ import Cards from "../components/Cards.jsx";
 export default function Home() {
   const [search, setSearch] = React.useState("");
   const [item, setItem] = React.useState("");
+
   const handleSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
@@ -15,13 +16,12 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setItem(search);
-    setSearch("");
   };
 
   return (
     <div>
       <div>
-        <Navbar />
+        <Navbar search={setSearch} />
       </div>
       <div>
         <Carousal
